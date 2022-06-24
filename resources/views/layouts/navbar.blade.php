@@ -5,44 +5,56 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav me-auto p-3 p-lg-0">
-            <a href="index.html" class="nav-item nav-link active">Home</a>
-            <a href="index.html" class="nav-item nav-link ">Sejarah</a>
-            <a href="index.html" class="nav-item nav-link ">Pengumuman</a>
+            <a href="{{route('frontend') }}" class="nav-item nav-link active">Home</a>
+            <a href="{{route('sejarah') }}" class="nav-item nav-link ">Sejarah</a>
+            <a href="{{route('pengumuman') }}" class="nav-item nav-link ">Pengumuman</a>
 
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profil</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                    <a href="feature.html" class="dropdown-item">Data Umum</a>
-                    <a href="team.html" class="dropdown-item">Tujuan</a>
-                    <a href="testimonial.html" class="dropdown-item">Visi Misi</a>
-                    <a href="testimonial.html" class="dropdown-item">Pengurus</a>
-                    <a href="testimonial.html" class="dropdown-item">Struktur Organisasi</a>
+                    <a href="{{route('dataumum') }}" class="dropdown-item">Data Umum</a>
+                    <a href="{{route('tujuan') }}" class="dropdown-item">Tujuan</a>
+                    <a href="{{route('visimisi') }}" class="dropdown-item">Visi Misi</a>
+                    <a href="{{route('pengurus') }}" class="dropdown-item">Pengurus</a>
+                    <a href="{{route('strukturorganisasi') }}" class="dropdown-item">Struktur Organisasi</a>
                 </div>
             </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Berita</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                    <a href="testimonial.html" class="dropdown-item">Kegiatan</a>
+                    <a href="{{route('kegiatanfrontend') }}" class="dropdown-item">Kegiatan</a>
                 </div>
             </div>
-            <div class="nav-item dropdown">
+            <!-- <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Tentang Muba</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                    <a href="testimonial.html" class="dropdown-item">Galeri</a>
-                    <a href="testimonial.html" class="dropdown-item">Tujuan</a>
-                    <a href="testimonial.html" class="dropdown-item">Sejarah</a>
+                    <a href="{{route('galerimuba') }}" class="dropdown-item">Galeri</a>
+                    <a href="{{route('tujuanmuba') }}" class="dropdown-item">Tujuan</a>
+                    <a href="{{route('sejarahmuba') }}" class="dropdown-item">Sejarah</a>
                 </div>
-            </div>
+            </div> -->
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Galeri</a>
                 <div class="dropdown-menu border-0 rounded-0 rounded-bottom m-0">
-                    <a href="testimonial.html" class="dropdown-item">Foto Kegiatan</a>
+                    <a href="{{route('galeri') }}" class="dropdown-item">Foto Kegiatan</a>
                 </div>
             </div>
         </div>
-        <a href="#" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">
+        @auth
+        <a onclick="event.preventDefault();document.getElementById('logout-form').submit();" href="{{route('logout') }}" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">
+            <i class="fa fa-arrow-right-to-bracket"></i>
+            Logout
+        </a>
+ 
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @else
+        <a href="{{route('login') }}" class="btn btn-sm btn-light rounded-pill py-2 px-4 d-none d-lg-block">
             <i class="fa fa-arrow-right-to-bracket"></i>
             Login
         </a>
+        @endauth
+
     </div>
 </nav>

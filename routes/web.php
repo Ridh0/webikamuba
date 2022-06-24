@@ -28,6 +28,14 @@ Route::get('/visimisi', 'App\Http\Controllers\FrontendController@visimisi')->nam
 Route::get('/tujuan', 'App\Http\Controllers\FrontendController@tujuan')->name('tujuan');
 Route::get('/pengurus', 'App\Http\Controllers\FrontendController@pengurus')->name('pengurus');
 Route::get('/strukturorganisasi', 'App\Http\Controllers\FrontendController@strukturorganisasi')->name('strukturorganisasi');
+Route::get('/sejarah', 'App\Http\Controllers\FrontendController@sejarah')->name('sejarah');
+Route::get('/pengumuman', 'App\Http\Controllers\FrontendController@pengumuman')->name('pengumuman');
+Route::get('/galeri', 'App\Http\Controllers\FrontendController@galeri')->name('galeri');
+Route::get('/galerimuba', 'App\Http\Controllers\FrontendController@galerimuba')->name('galerimuba');
+Route::get('/tujuanmuba', 'App\Http\Controllers\FrontendController@tujuanmuba')->name('tujuanmuba');
+Route::get('/sejarahmuba', 'App\Http\Controllers\FrontendController@sejarahmuba')->name('sejarahmuba');
+Route::get('/kegiatan', 'App\Http\Controllers\FrontendController@kegiatan')->name('kegiatanfrontend');
+Route::get('/kegiatan/detail/{kegiatans}', 'App\Http\Controllers\FrontendController@showkegiatan')->name('kegiatan.detail');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
@@ -40,6 +48,9 @@ Route::get('upgrade', function () {
 Route::get('map', function () {
     return view('pages.maps');
 })->name('map');
+Route::get('kegiatanadmin', [App\Http\Controllers\KegiatanController::class, 'index'])->name('kegiatan');
+Route::get('addkegiatan', [App\Http\Controllers\KegiatanController::class, 'create'])->name('kegiatan.create');
+Route::post('storekegiatan', [App\Http\Controllers\KegiatanController::class, 'store'])->name('kegiatan.store');
 Route::get('carousel', [App\Http\Controllers\CarouselController::class, 'index'])->name('carousel');
 Route::get('addcarousel', [App\Http\Controllers\CarouselController::class, 'create'])->name('carousel.create');
 Route::post('storecarousel', [App\Http\Controllers\CarouselController::class, 'store'])->name('carousel.store');

@@ -110,6 +110,12 @@
                         <i class="ni ni-planet text-blue"></i> {{ __('Kategori') }}
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('kegiatan') }}">
+                        <i class="ni ni-planet text-blue"></i> {{ __('Kegiatan') }}
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('carousel') }}">
                         <i class="ni ni-planet text-blue"></i> {{ __('Carousel') }}

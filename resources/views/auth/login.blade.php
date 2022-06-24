@@ -30,7 +30,7 @@
                     <div style="background:#ffffff;" class="mb-4 card pt-2">
                         <h3>IKA <strong>MUBA</strong></h3>
                     </div>
-                    <a href="index.html"><img  src="{{ asset('frontend') }}/assets/img/logo-muba2.png" alt=""></a>
+                    <a href="index.html"><img  src="{{asset('frontend/img/logoikamuba.png')}}" alt=""></a>
                     <div  class="mt-4 text-white pt-2">
                     <h6>Ikatan Keluarga Musi Banyuasin</h6>                                                
 

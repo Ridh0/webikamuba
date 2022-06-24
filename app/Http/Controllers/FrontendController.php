@@ -11,7 +11,11 @@ use Illuminate\Pagination\Paginator;
 
 class FrontendController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
+ 
+    }
 
     /**
      * Display a listing of the resource.
@@ -20,14 +24,33 @@ class FrontendController extends Controller
      */
     public function index()
     {
-        $carousel = Data_All::all();
-
-        $wisata = DB::table('wisata')->orderBy('id')->cursorPaginate(3);
-        return view('frontend.index', compact('wisata','carousel'));
+        $carousel = Data_All::where('nama_kategori','carousel')->get();
+        $kegiatan = Data_All::where('nama_kategori','kegiatan')->cursorPaginate(2);
+        $pengurus = DB::table('anggotamuba')->where('jabatan', 'Ketua')->get();
+        $wisatas = DB::table('wisata')->orderBy('id')->cursorPaginate(3);
+        $wisata = DB::table('wisata')->get();
+        return view('frontend.index', compact('wisata','carousel','kegiatan','pengurus'));
     }
     public function dataumum()
     {
     return view('frontend.dataumum');
+    }
+    public function galeri()
+    {
+        $galeri = Data_All::where('nama_kategori','kegiatan')->get();
+    return view('frontend.galeri', compact('galeri'));
+    }
+    public function kegiatan()
+    {
+        $kegiatan = Data_All::where('nama_kategori','kegiatan')->get();
+
+    return view('frontend.kegiatan', compact('kegiatan'));
+    }
+    public function showkegiatan($kegiatans)
+    {
+        $kegiatan = Data_All::find($kegiatans);
+        $kegiatanlain= Data_All::where('id','!=', $kegiatans)->where('nama_kategori','kegiatan')->get();
+    return view('frontend.kegiatan.show', compact('kegiatan','kegiatanlain'));
     }
     public function tujuan()
     {
@@ -37,6 +60,14 @@ class FrontendController extends Controller
     {
     return view('frontend.visimisi');
     }
+    public function sejarah()
+    {
+    return view('frontend.sejarah');
+    }
+    public function pengumuman()
+    {
+    return view('frontend.pengumuman');
+    }
     public function strukturorganisasi()
     {
     return view('frontend.strukturorganisasi');
@@ -45,17 +76,17 @@ class FrontendController extends Controller
     {
         $pengurus = DB::table('anggotamuba')->where('jabatan', 'Ketua')->get();
         $pengurus2 = DB::table('anggotamuba')->where('jabatan', 'Wakil Ketua')->get();
-                $pengurus4 = DB::table('anggotamuba')->where('jabatan', 'Sekretaris')->get();
-     $pengurus5 = DB::table('anggotamuba')->where('jabatan', 'Ketua Umum')->get();
-          $pengurus6 = DB::table('anggotamuba')->where('jabatan', 'Sekretaris Umum')->get();
-                $pengurus7 = DB::table('anggotamuba')->where([
+                $pengurus3 = DB::table('anggotamuba')->where('jabatan', 'Sekretaris')->get();
+     $pengurus4 = DB::table('anggotamuba')->where('jabatan', 'Ketua Umum')->get();
+          $pengurus5 = DB::table('anggotamuba')->where('jabatan', 'Sekretaris Umum')->get();
+                $pengurus6 = DB::table('anggotamuba')->where([
 
         ['dewan', 'Pengurus Harian'],
 
        
 
     ])->skip(1)->take(8)->get();
-        $pengurus3 = DB::table('anggotamuba')->get();
+        $pengurus7 = DB::table('anggotamuba')->where('jabatan', 'anggota')->get();
 
         return view('frontend.pengurus', compact('pengurus','pengurus2','pengurus4','pengurus3','pengurus5','pengurus6','pengurus7'));
     }
